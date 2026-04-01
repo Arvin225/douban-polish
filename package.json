@@ -6,7 +6,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "publish:greasyfork": "node scripts/publish-greasyfork.js"
+    "publish:greasyfork": "node scripts/publish-greasyfork.js --verbose"
   },
   "devDependencies": {
     "vite": "^5.0.0",

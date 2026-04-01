@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 /**
  * GreasyFork 自动发布脚本
- * 
+ *
  * 使用方法:
  * 1. 设置环境变量: GREASYFORK_API_KEY=你的API密钥
  * 2. 修改 package.json 中的 greasyfork.scriptId
  * 3. 运行: npm run publish:greasyfork
- * 
+ *
  * 获取 API 密钥: https://greasyfork.org/users/webhook-info
  */
 
@@ -14,6 +14,9 @@ const fs = require('fs');
 const path = require('path');
 const https = require('https');
 const { execSync } = require('child_process');
+
+const args = process.argv.slice(2);
+const isVerbose = args.includes('--verbose') || args.includes('-v');
 
 const packageJson = require('../package.json');
 const SCRIPT_ID = packageJson.greasyfork?.scriptId || process.env.GREASYFORK_SCRIPT_ID;
@@ -62,7 +65,7 @@ async function checkPrerequisites() {
 
 async function publishToGreasyFork() {
     const content = fs.readFileSync(DIST_FILE, 'utf-8');
-    
+
     const postData = new URLSearchParams({
         'script_version[code]': content
     }).toString();
@@ -84,6 +87,11 @@ async function publishToGreasyFork() {
             let data = '';
             res.on('data', (chunk) => data += chunk);
             res.on('end', () => {
+                if (isVerbose) {
+                    log(`HTTP Status: ${res.statusCode}`, 'info');
+                    log('Raw API Response:', 'info');
+                    log(data || '(empty response)', 'info');
+                }
                 if (res.statusCode === 200 || res.statusCode === 201) {
                     resolve({ success: true, data });
                 } else if (res.statusCode === 401) {
@@ -106,9 +114,9 @@ async function main() {
     log('=====================================');
     log('  GreasyFork 自动发布工具');
     log('=====================================');
-    
+
     await checkPrerequisites();
-    
+
     log(`脚本版本: ${packageJson.version}`);
     log(`Script ID: ${SCRIPT_ID}`);
     log('正在发布...', 'info');
