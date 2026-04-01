@@ -1,4 +1,4 @@
-# 豆瓣界面优化 - Vite 模块化版
+# Douban Polish - 体验更现代化的豆瓣
 
 基于 Vite + vite-plugin-monkey 的豆瓣界面优化脚本。
 

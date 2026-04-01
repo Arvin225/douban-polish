@@ -1,7 +1,7 @@
 {
   "name": "douban-polish",
   "version": "3.3.0",
-  "description": "豆瓣界面优化脚本 - 模块化版",
+  "description": "Douban Polish - 体验更现代化的豆瓣",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
