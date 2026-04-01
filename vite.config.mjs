@@ -8,7 +8,7 @@ export default defineConfig({
             userscript: {
                 name: 'Douban Polish',
                 namespace: 'http://tampermonkey.net/',
-                version: '3.3.0',
+                version: '3.3.1',
                 description: 'Modernize Douban interface with auto-expand comments and rating filters',
                 author: 'arvin',
                 match: [

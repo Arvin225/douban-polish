@@ -1,6 +1,6 @@
 {
   "name": "douban-polish",
-  "version": "3.3.0",
+  "version": "3.3.1",
   "description": "Douban Polish - 体验更现代化的豆瓣",
   "scripts": {
     "dev": "vite",
