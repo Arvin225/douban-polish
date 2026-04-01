@@ -13,7 +13,7 @@
     "vite-plugin-monkey": "^4.0.0"
   },
   "greasyfork": {
-    "scriptId": "YOUR_SCRIPT_ID",
-    "url": "https://greasyfork.org/scripts/YOUR_SCRIPT_ID"
+    "scriptId": "572060",
+    "url": "https://greasyfork.org/scripts/572060"
   }
 }

@@ -37,13 +37,30 @@ export function findContainerByTitle(titleText, selectors) {
  * 检查元素是否有原生展开按钮
  */
 export function hasNativeExpand(item) {
-    const nativeExpand = item.querySelector('.expand-btn, [data-action="expand"], .review-expand');
-    if (!nativeExpand) return false;
+    // 首先检查常见的展开按钮类名
+    const nativeExpand = item.querySelector('.expand-btn, [data-action="expand"], .review-expand, .expand, .unfold, .j a');
+    if (nativeExpand) {
+        const text = nativeExpand.textContent || '';
+        if (text.includes('展开') || text.includes('▼') || text.includes('更多')) {
+            return true;
+        }
+        if (nativeExpand.getAttribute('data-action') === 'expand') {
+            return true;
+        }
+    }
     
-    const text = nativeExpand.textContent || '';
-    return text.includes('展开') || 
-           text.includes('▼') || 
-           nativeExpand.getAttribute('data-action') === 'expand';
+    // 检查所有包含"展开"文本的链接或按钮
+    const allLinks = item.querySelectorAll('a, button, span');
+    for (const link of allLinks) {
+        const text = link.textContent.trim();
+        // 豆瓣展开按钮通常包含"展开全文"或"展开"+箭头
+        if ((text.includes('展开全文') || text === '展开' || text.includes('展开 ▼')) && 
+            link.className !== 'script-expand-btn') { // 排除脚本自己添加的按钮
+            return true;
+        }
+    }
+    
+    return false;
 }
 
 /**
