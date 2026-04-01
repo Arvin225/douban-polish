@@ -1,0 +1,19 @@
+{
+  "name": "douban-polish",
+  "version": "3.3.0",
+  "description": "豆瓣界面优化脚本 - 模块化版",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "publish:greasyfork": "node scripts/publish-greasyfork.js"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0",
+    "vite-plugin-monkey": "^4.0.0"
+  },
+  "greasyfork": {
+    "scriptId": "YOUR_SCRIPT_ID",
+    "url": "https://greasyfork.org/scripts/YOUR_SCRIPT_ID"
+  }
+}
