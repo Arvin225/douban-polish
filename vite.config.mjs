@@ -6,10 +6,10 @@ export default defineConfig({
         monkey({
             entry: 'src/main.js',
             userscript: {
-                name: 'Douban Polish - 体验更现代化的豆瓣',
+                name: 'Douban Polish',
                 namespace: 'http://tampermonkey.net/',
-                version: '3.3',
-                description: '一款专为豆瓣用户设计的浏览器插件，提供了丰富的扩展功能，让原生页面焕然一新！',
+                version: '3.3.0',
+                description: 'Modernize Douban interface with auto-expand comments and rating filters',
                 author: 'arvin',
                 match: [
                     'https://movie.douban.com/subject/*',
