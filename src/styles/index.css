@@ -212,3 +212,332 @@
 .douban-opt-section + div[class*="more"] {
     display: none !important;
 }
+
+/* 回应弹窗 */
+.douban-reply-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reply-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.reply-modal-content {
+    position: relative;
+    background: white;
+    border-radius: 12px;
+    width: 95%;
+    max-width: 800px;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    animation: modalSlideIn 0.3s ease;
+    overflow: hidden;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.reply-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.reply-modal-header h3 {
+    margin: 0;
+    font-size: 16px;
+    color: #111;
+}
+
+.reply-modal-close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #999;
+    cursor: pointer;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s;
+}
+
+.reply-modal-close:hover {
+    background: #f5f5f5;
+    color: #333;
+}
+
+.reply-modal-body {
+    padding: 0 20px 20px;
+    overflow-y: auto;
+    max-height: calc(85vh - 60px);
+    border-radius: 0 0 12px 12px;
+}
+
+.douban-comments-wrapper .comment-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.reply-loading {
+    text-align: center;
+    color: #999;
+    padding: 40px;
+}
+
+.reply-empty {
+    text-align: center;
+    color: #999;
+    padding: 40px;
+}
+
+.reply-error {
+    text-align: center;
+    padding: 40px;
+}
+
+.reply-error p {
+    color: #e74c3c;
+    margin-bottom: 16px;
+}
+
+.reply-open-original {
+    color: #00b51d;
+    text-decoration: none;
+}
+
+.reply-open-original:hover {
+    text-decoration: underline;
+}
+
+/* iframe备用方案 */
+.reply-iframe-wrapper {
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+}
+
+.reply-iframe-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 0 0 12px 12px;
+}
+
+.reply-list-popup,
+.douban-comments-wrapper .comment-list {
+    display: flex;
+    flex-direction: column;
+}
+
+/* 豆瓣评论区样式适配 */
+.douban-comments-wrapper .comment-list h3 {
+    color: #111;
+    font-size: 14px;
+    margin: 0 0 16px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.douban-comments-wrapper .comment-item {
+    display: flex;
+    gap: 12px;
+    padding: 16px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.douban-comments-wrapper .comment-item:last-child {
+    border-bottom: none;
+}
+
+.douban-comments-wrapper .avatar {
+    flex-shrink: 0;
+}
+
+.douban-comments-wrapper .avatar img {
+    border-radius: 4px;
+}
+
+.douban-comments-wrapper .content {
+    flex: 1;
+    min-width: 0;
+}
+
+.douban-comments-wrapper .header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+}
+
+.douban-comments-wrapper .header a {
+    color: #00b51d;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.douban-comments-wrapper .header a:hover {
+    text-decoration: underline;
+}
+
+.douban-comments-wrapper .author-tag {
+    background: #00b51d;
+    color: white;
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 3px;
+}
+
+.douban-comments-wrapper .time {
+    color: #999;
+    font-size: 12px;
+}
+
+.douban-comments-wrapper .content > p {
+    color: #333;
+    line-height: 1.6;
+    font-size: 13px;
+    margin: 0 0 12px 0;
+}
+
+.douban-comments-wrapper .actions {
+    display: flex;
+    gap: 12px;
+    font-size: 12px;
+    color: #999;
+}
+
+.douban-comments-wrapper .actions span {
+    cursor: pointer;
+}
+
+.douban-comments-wrapper .actions span:hover {
+    color: #00b51d;
+}
+
+.douban-comments-wrapper .vote-count,
+.douban-comments-wrapper .reply-vote {
+    color: #999;
+}
+
+.douban-comments-wrapper .reply-btn,
+.douban-comments-wrapper .reply-report,
+.douban-comments-wrapper .report {
+    color: #999;
+}
+
+/* 子回复列表 */
+.douban-comments-wrapper .reply-list {
+    margin-top: 12px;
+    padding-left: 20px;
+    border-left: 2px solid #e0e0e0;
+}
+
+.douban-comments-wrapper .reply-item {
+    display: flex;
+    gap: 8px;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.douban-comments-wrapper .reply-item:last-child {
+    border-bottom: none;
+}
+
+.douban-comments-wrapper .bg-img {
+    flex-shrink: 0;
+}
+
+.douban-comments-wrapper .bg-img img {
+    border-radius: 4px;
+}
+
+.douban-comments-wrapper .reply-con {
+    flex: 1;
+    min-width: 0;
+}
+
+.douban-comments-wrapper .reply-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 4px;
+    flex-wrap: wrap;
+}
+
+.douban-comments-wrapper .reply-meta a {
+    color: #00b51d;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.douban-comments-wrapper .reply-meta a:hover {
+    text-decoration: underline;
+}
+
+.douban-comments-wrapper .reply-time {
+    color: #999;
+    font-size: 11px;
+}
+
+.douban-comments-wrapper .reply-content {
+    color: #333;
+    font-size: 12px;
+    line-height: 1.5;
+    margin-bottom: 4px;
+}
+
+.douban-comments-wrapper .reply-quote {
+    display: block;
+    color: #999;
+    background: #f5f5f5;
+    padding: 4px 8px;
+    border-radius: 3px;
+    margin-bottom: 4px;
+    font-size: 11px;
+    border-left: 2px solid #ddd;
+}
+
+.douban-comments-wrapper .reply-actions {
+    display: flex;
+    gap: 8px;
+    font-size: 11px;
+    color: #999;
+}
+
+.douban-comments-wrapper .reply-actions span {
+    cursor: pointer;
+}
+
+.douban-comments-wrapper .reply-actions span:hover {
+    color: #00b51d;
+}

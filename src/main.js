@@ -5,6 +5,7 @@ import { state, safeExpand } from './modules/base.js';
 import { findShortCommentContainer, optimizeShortComments } from './modules/shortComments.js';
 import { findReviewContainer, optimizeReviews } from './modules/reviews.js';
 import { addNavPanel } from './modules/navigation.js';
+import { initReplyModal } from './modules/replyModal.js';
 import './styles/index.css';
 
 /**
@@ -12,6 +13,9 @@ import './styles/index.css';
  */
 function init() {
     log('初始化开始，页面类型:', CONFIG.pageType);
+    
+    // 初始化回应弹窗功能
+    initReplyModal();
     
     setTimeout(() => {
         // 展开并优化短评

@@ -1,10 +1,33 @@
 import { TYPE_NAMES } from '../config.js';
 
 /**
+ * 检查当前页面是否为独立列表页（影评/短评详情页）
+ * 这些页面不需要显示悬浮导航窗口
+ */
+function isStandaloneListPage() {
+    const path = location.pathname;
+    // 检查 URL 路径是否匹配独立列表页模式
+    const isReviewsPage = path.includes('/reviews') || path.includes('/review');
+    const isCommentsPage = path.includes('/comments') || path.includes('/comment');
+    
+    // 如果在详情页，不显示导航
+    if (isReviewsPage || isCommentsPage) {
+        return true;
+    }
+    
+    return false;
+}
+
+/**
  * 添加导航面板
  */
 export function addNavPanel() {
     if (document.querySelector('.douban-nav')) return;
+    
+    // 在独立列表页不显示导航面板
+    if (isStandaloneListPage()) {
+        return;
+    }
     
     const nav = document.createElement('div');
     nav.className = 'douban-nav';

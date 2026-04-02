@@ -4,9 +4,22 @@ import { findContainer, findContainerByTitle, createHeader } from '../utils/dom.
 import { applyBaseOptimization } from './base.js';
 
 /**
+ * 检查当前页面是否为独立列表页（影评/短评详情页）
+ */
+function isStandaloneListPage() {
+    const path = location.pathname;
+    return path.includes('/reviews') || path.includes('/review') ||
+           path.includes('/comments') || path.includes('/comment');
+}
+
+/**
  * 查找短评容器
  */
 export function findShortCommentContainer() {
+    // 在独立列表页不查找容器
+    if (isStandaloneListPage()) {
+        return null;
+    }
     let container = findContainer(SELECTORS.short);
     if (!container) {
         container = findContainerByTitle(TYPE_NAMES.short, SELECTORS.short);
